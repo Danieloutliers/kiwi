@@ -67,7 +67,7 @@ function updateTimer7() {
 }
 
 
-const timerInterval1 = setInterval(updateTimer1, 6000); // Update every minute (60,000 milliseconds)
+const timerInterval1 = setInterval(updateTimer1, 120000); // Update every minute (60,000 milliseconds)
 const timerInterval2 = setInterval(updateTimer2, 120000); // Update every 100 milliseconds
 const timerInterval3 = setInterval(updateTimer3, 120000)
 const timerInterval4 = setInterval(updateTimer4, 480000)
