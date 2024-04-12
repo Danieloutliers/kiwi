@@ -1,0 +1,127 @@
+/* MODAL  */
+.modal-content {
+    background-color: transparent;
+    text-align: center;
+  }
+  
+  .modal {
+    -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
+            background: rgba(0, 0, 0, 0.8);
+  }
+  
+  .modal-body {
+    text-align: center;
+    color: #fff;
+    font-size: 23px;
+    font-weight: 30px;
+  }
+  
+  .modal-body span {
+    color: #52a7ff;
+  }
+  
+  .modal-content {
+    border: none;
+  }
+  
+  .close-modal {
+    width: 28px;
+    position: absolute;
+    right: 50px;
+    top: 50px;
+    transition: all 0.5s;
+    filter: brightness(1.1);
+  }
+  
+  .close-modal:hover {
+    transform: rotate(180deg);
+    cursor: pointer;
+  }
+  
+  .politicas .modal-content {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+    max-height: 600px;
+    position: relative;
+  }
+  
+  .politicas .modal-content .close-modal {
+    top: -40px;
+    right: -40px;
+  }
+  
+  .politicas .modal-body {
+    overflow-y: scroll;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .politicas .modal-body h1 {
+    color: #52a7ff;
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 32px;
+    text-align: left;
+  }
+  
+  .politicas .modal-body h2 {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 26px;
+    text-align: left;
+    color: #7F92A5;
+  }
+  
+  .politicas .modal-body ol li{
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 400;
+    color: #7F92A5;
+  }
+  
+  .politicas .btn-cta span {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 31px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #fff;
+  }
+  
+  .politicas .btn-cta {
+    -webkit-animation: none;
+            animation: none;
+    box-shadow: none;
+  }
+  
+  .politicas .modal-body p {
+    font-size: 16px;
+    line-height: 22px;
+    color: #7F92A5;
+    margin: 0px;
+    font-weight: 400;
+  }
+
+  .politicas .modal-body .btn-nm-primary {
+    margin-top: 10px;
+  }
+
+  .politicas .modal-body .btn-nm-primary span {
+    color: #fff;
+  }
+
+  @media (max-width: 768px) {
+    .politicas .modal-content .close-modal {
+        right: 0px;
+      }
+  }
+
+  @media (max-height: 700px) {
+    .modal.show .modal-dialog {
+      padding-top: 50px;
+    }
+  }
