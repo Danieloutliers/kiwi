@@ -36,27 +36,7 @@ function atualizarVagas() {
 atualizarVagas();
 setInterval(atualizarVagas, 10000); // chama a função atualizarVagas a cada 10 segundos (10000 ms)
 
-// Função para criar um cookie
-function setCookie(nome, valor, duracaoHoras) {
-  var dataExpiracao = new Date();
-  dataExpiracao.setTime(dataExpiracao.getTime() + (duracaoHoras * 60 * 60 * 1000));
-  var cookie = nome + "=" + valor + ";expires=" + dataExpiracao.toUTCString() + ";path=/";
-  document.cookie = cookie;
-}
 
-// Função para obter o valor de um cookie
-function getCookie(nome) {
-  var name = nome + "=";
-  var decodedCookie = decodeURIComponent(document.cookie);
-  var partesCookie = decodedCookie.split(';');
-  for(var i = 0; i < partesCookie.length; i++) {
-    var parte = partesCookie[i];
-    while (parte.charAt(0) == ' ') {
-      parte = parte.substring(1);
-    }
-    if (parte.indexOf(name) == 0) {
-      return parte.substring(name.length, parte.length);
-    }
   }
   return "";
 }
