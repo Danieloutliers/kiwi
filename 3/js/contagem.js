@@ -29,7 +29,7 @@ function atualizarVagas() {
 
 // Inicia a contagem regressiva
 atualizarVagas();
-setInterval(atualizarVagas, 10000); // chama a função atualizarVagas a cada segundo (1000 ms)
+setInterval(atualizarVagas, 1000); // chama a função atualizarVagas a cada segundo (1000 ms)
 
 // Funções auxiliares para trabalhar com cookies
 function setCookie(nome, valor) {
