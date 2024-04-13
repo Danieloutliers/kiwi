@@ -1,0 +1,25 @@
+.elementor-kit-704{--e-global-color-primary:#6EC1E4;--e-global-color-secondary:#54595F;--e-global-color-text:#7A7A7A;--e-global-color-accent:#61CE70;--e-global-color-8f356c6:#FFFFFF;--e-global-color-6042389:#B88710;--e-global-color-86d8d8d:#0D3543;--e-global-typography-primary-font-family:"Sora";--e-global-typography-primary-font-weight:600;--e-global-typography-secondary-font-family:"Sora";--e-global-typography-secondary-font-weight:400;--e-global-typography-text-font-family:"Sora";--e-global-typography-text-font-weight:400;--e-global-typography-accent-font-family:"Sora";--e-global-typography-accent-font-weight:500;--e-global-typography-4c6a5d0-font-family:"Sora";}.elementor-section.elementor-section-boxed > .elementor-container{max-width:1140px;}.e-con{--container-max-width:1140px;}.elementor-widget:not(:last-child){margin-block-end:20px;}.elementor-element{--widgets-spacing:20px 20px;}{}h1.entry-title{display:var(--page-title-display);}.elementor-kit-704 e-page-transition{background-color:#FFBC7D;}.site-header{padding-inline-end:0px;padding-inline-start:0px;}@media(max-width:1024px){.elementor-section.elementor-section-boxed > .elementor-container{max-width:1024px;}.e-con{--container-max-width:1024px;}}@media(max-width:767px){.elementor-section.elementor-section-boxed > .elementor-container{max-width:767px;}.e-con{--container-max-width:767px;}}/* Start Custom Fonts CSS */@font-face {
+	font-family: 'Sora';
+	font-style: normal;
+	font-weight: normal;
+	font-display: auto;
+	src: url('../fonts/Sora-Regular.eot');
+	src: url('../fonts/Sora-Regular.eot#iefix') format('embedded-opentype'),
+		url('../fonts/Sora-Regular.woff2') format('woff2'),
+		url('../fonts/Sora-Regular.woff') format('woff'),
+		url('../fonts/Sora-Regular.ttf') format('truetype'),
+		url('../images/Sora-Regular.svg#Sora') format('svg');
+}
+@font-face {
+	font-family: 'Sora';
+	font-style: normal;
+	font-weight: bold;
+	font-display: auto;
+	src: url('../fonts/Sora-Bold.eot');
+	src: url('../fonts/Sora-Bold.eot#iefix') format('embedded-opentype'),
+		url('../fonts/Sora-Bold.woff2') format('woff2'),
+		url('../fonts/Sora-Bold.woff') format('woff'),
+		url('../fonts/Sora-Bold.ttf') format('truetype'),
+		url('../images/Sora-Bold.svg#Sora') format('svg');
+}
+/* End Custom Fonts CSS */
