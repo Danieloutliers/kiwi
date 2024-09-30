@@ -12,27 +12,32 @@
             justify-content: center;
             height: 100vh;
             margin: 0;
+            padding: 10px;
         }
         h1 {
             color: #333;
+            font-size: 1.5em;
         }
         label {
             display: block;
             margin-top: 10px;
+            font-size: 1.2em;
         }
         input, button {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             margin-top: 5px;
             border: 1px solid #ccc;
             border-radius: 5px;
             box-sizing: border-box;
+            font-size: 1.2em;
         }
         button {
             background-color: #333;
             color: #fff;
             border: none;
             cursor: pointer;
+            font-size: 1.2em;
         }
         button:hover {
             background-color: #555;
@@ -40,12 +45,10 @@
         #resultado, #pagamentoMensal {
             font-weight: bold;
             color: #333;
+            font-size: 1.2em;
         }
         @media (max-width: 600px) {
-            body {
-                padding: 20px;
-            }
-            input, button {
+            h1, label, input, button, #resultado, #pagamentoMensal {
                 font-size: 1em;
             }
         }
