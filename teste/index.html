@@ -63,13 +63,13 @@
     <div id="calculadora" style="display: none;">
         <h1>Calculadora de Juros</h1>
         <label for="valorInicial">Valor Inicial:</label>
-        <input type="number" id="valorInicial" name="valorInicial">
+        <input type="number" id="valorInicial" name="valorInicial" inputmode="numeric" pattern="[0-9]*">
 
         <label for="meses">Número de Meses:</label>
-        <input type="number" id="meses" name="meses">
+        <input type="number" id="meses" name="meses" inputmode="numeric" pattern="[0-9]*">
         
         <label for="juros">Taxa de Juros Mensais (%):</label>
-        <input type="number" id="juros" name="juros" step="0.01">
+        <input type="number" id="juros" name="juros" step="0.01" inputmode="numeric" pattern="[0-9]*">
 
         <label for="tipoJuros">Juros Compostos:</label>
         <input type="checkbox" id="tipoJuros" name="tipoJuros">
@@ -100,7 +100,6 @@
                 valorFinal = valorInicial * (1 + juros * meses);
             }
 
-
             var pagamentoMensal = valorFinal / meses;
 
             document.getElementById('resultado').innerText = formatarMoeda(valorFinal);
@@ -109,7 +108,7 @@
 
         function verificarSenha() {
             var senha = document.getElementById('senha').value;
-            if (senha === '326435') {
+            if (senha === '123') {
                 document.getElementById('calculadora').style.display = 'block';
             } else {
                 alert('Senha incorreta!');
