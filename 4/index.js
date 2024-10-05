@@ -5,13 +5,18 @@ function calculateInstallment(input) {
     const rate = parseFloat(cells[2].getElementsByTagName('input')[0].value) / 100 || 0;
     const months = parseInt(cells[3].getElementsByTagName('input')[0].value) || 0;
 
-    if (principal > 0 && rate > 0 && months > 0) {
+    if (principal > 0 && rate > 0) {
         const interest = principal * rate;
-        const totalInterest = interest * months;
-        const total = principal + totalInterest;
-        const installment = total / months;
-        cells[7].getElementsByTagName('input')[0].value = installment.toFixed(2);
         cells[8].getElementsByTagName('input')[0].value = interest.toFixed(2);
+
+        if (months > 0) {
+            const totalInterest = interest * months;
+            const total = principal + totalInterest;
+            const installment = total / months;
+            cells[7].getElementsByTagName('input')[0].value = installment.toFixed(2);
+        } else {
+            cells[7].getElementsByTagName('input')[0].value = '';
+        }
     } else {
         cells[7].getElementsByTagName('input')[0].value = '';
         cells[8].getElementsByTagName('input')[0].value = '';
@@ -40,7 +45,7 @@ function updateTotals() {
 function addRow() {
     const table = document.getElementById('loanTable').getElementsByTagName('tbody')[0];
     const newRow = table.insertRow();
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 9; i++) {
         const newCell = newRow.insertCell(i);
         const input = document.createElement('input');
         input.type = (i === 1 || i === 3 || i === 7 || i === 8) ? 'number' : 'text';
@@ -109,14 +114,3 @@ function loadTable() {
 }
 
 window.onload = loadTable;
-
-$(document).ready(function() {
-    $("#exportButton").click(function() {
-        $("#loanTable").table2excel({
-            exclude: ".noExl",
-            name: "Tabela de Empréstimos",
-            filename: "tabela_de_emprestimos",
-            fileext: ".xls"
-        });
-    });
-});
