@@ -1,3 +1,6 @@
+// Variável global para armazenar a linha arrastada
+let draggedRow = null;
+
 function calculateInstallment(input) {
     const row = input.parentNode.parentNode;
     const cells = row.getElementsByTagName('td');
@@ -61,6 +64,43 @@ function updateTotals() {
     document.getElementById('totalInterest').value = totalInterest.toFixed(2);
 }
 
+// Função para permitir que as linhas sejam arrastáveis
+function makeRowsDraggable() {
+    const rows = document.querySelectorAll('#loanTable tbody tr');
+
+    rows.forEach(row => {
+        row.draggable = true; // Permite que a linha seja arrastada
+
+        row.addEventListener('dragstart', (e) => {
+            draggedRow = row; // Armazena a linha sendo arrastada
+            e.dataTransfer.effectAllowed = 'move';
+        });
+
+        row.addEventListener('dragover', (e) => {
+            e.preventDefault(); // Previne o comportamento padrão para permitir o drop
+            e.dataTransfer.dropEffect = 'move';
+        });
+
+        row.addEventListener('drop', (e) => {
+            e.preventDefault(); // Previne o comportamento padrão
+            if (draggedRow !== row) {
+                const tbody = document.querySelector('#loanTable tbody');
+                const allRows = Array.from(tbody.querySelectorAll('tr'));
+                const draggedIndex = allRows.indexOf(draggedRow);
+                const targetIndex = allRows.indexOf(row);
+
+                // Move a linha arrastada para a posição antes da linha alvo
+                if (draggedIndex > targetIndex) {
+                    tbody.insertBefore(draggedRow, row); // Coloca antes
+                } else {
+                    tbody.insertBefore(draggedRow, row.nextSibling); // Coloca depois
+                }
+            }
+        });
+    });
+}
+
+// Função de adicionar uma nova linha
 function addRow() {
     const table = document.getElementById('loanTable').getElementsByTagName('tbody')[0];
     const newRow = table.insertRow();
@@ -69,16 +109,9 @@ function addRow() {
         const newCell = newRow.insertCell(i);
 
         if (i === 9) { // Coluna de checkbox (Parcela)
-            // Criar 4 checkboxes inicialmente (podem ser removidos depois)
-            for (let j = 0; j < 4; j++) {
-                const checkbox = document.createElement('input');
-                checkbox.type = 'checkbox';
-                newCell.appendChild(checkbox);
-                // Adicionar um pequeno espaço entre os checkboxes
-                if (j < 3) {
-                    newCell.appendChild(document.createTextNode(' '));
-                }
-            }
+            const checkboxContainer = document.createElement('div');
+            checkboxContainer.className = 'checkbox-container'; // Adiciona a classe para aplicar o CSS
+            newCell.appendChild(checkboxContainer);
         } else {
             const input = document.createElement('input');
             input.type = (i === 1 || i === 3 || i === 7 || i === 8) ? 'number' : 'text';
@@ -95,13 +128,23 @@ function addRow() {
     deleteButton.textContent = 'Excluir';
     deleteButton.onclick = function() { deleteRow(this); };
     actionsCell.appendChild(deleteButton);
+
+    // Atualizar as linhas para permitir drag and drop
+    makeRowsDraggable();
 }
 
+// Função para excluir uma linha
 function deleteRow(button) {
     const row = button.parentNode.parentNode;
     row.parentNode.removeChild(row);
     updateTotals();
 }
+
+// Chama a função makeRowsDraggable para ativar o drag and drop nas linhas existentes
+window.onload = function() {
+    loadTable(); // Carrega a tabela salva se houver
+    makeRowsDraggable(); // Ativa o drag and drop nas linhas carregadas
+};
 
 function saveTable() {
     const table = document.getElementById('loanTable');
@@ -171,5 +214,3 @@ function loadTable() {
         updateTotals();
     }
 }
-
-window.onload = loadTable;
