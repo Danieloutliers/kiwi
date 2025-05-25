@@ -1,0 +1,365 @@
+/* Borrowers Page Specific Styles */
+
+/* Borrower Cards Grid */
+.borrowers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.borrower-card {
+  background-color: var(--card-background);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  transition: all var(--transition-normal);
+}
+
+.borrower-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.borrower-header {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-lg);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.borrower-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  margin-right: var(--spacing-md);
+  flex-shrink: 0;
+}
+
+.borrower-info {
+  flex: 1;
+}
+
+.borrower-info h3 {
+  margin: 0 0 var(--spacing-xs) 0;
+  font-size: 1.125rem;
+}
+
+.borrower-info p {
+  margin: var(--spacing-xs) 0 0 0;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+}
+
+.borrower-info p i {
+  margin-right: var(--spacing-xs);
+  color: var(--text-muted);
+}
+
+.borrower-stats {
+  display: flex;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.stat {
+  flex: 1;
+  text-align: center;
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat:not(:last-child) {
+  border-right: 1px solid var(--border-color);
+}
+
+.stat-value {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-xs);
+}
+
+.stat-active {
+  color: var(--success-color);
+}
+
+.stat-overdue {
+  color: var(--warning-color);
+}
+
+.stat-defaulted {
+  color: var(--danger-color);
+}
+
+.stat-paid {
+  color: var(--info-color);
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.borrower-actions {
+  display: flex;
+  justify-content: space-around;
+  padding: var(--spacing-md);
+}
+
+/* Borrower Detail View */
+.borrower-detail {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.borrower-detail-header {
+  background-color: var(--card-background);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--spacing-lg);
+}
+
+.borrower-profile {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--spacing-lg);
+}
+
+.borrower-profile-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-right: var(--spacing-lg);
+  flex-shrink: 0;
+}
+
+.borrower-profile-info {
+  flex: 1;
+}
+
+.borrower-profile-info h2 {
+  margin: 0 0 var(--spacing-xs) 0;
+  font-size: 1.5rem;
+}
+
+.borrower-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-xs);
+}
+
+.borrower-contact-item {
+  display: flex;
+  align-items: center;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.borrower-contact-item i {
+  margin-right: var(--spacing-xs);
+  color: var(--primary-color);
+}
+
+.borrower-meta {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-md);
+}
+
+@media (max-width: 768px) {
+  .borrower-meta {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.borrower-meta-item {
+  background-color: var(--background-color);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  text-align: center;
+}
+
+.borrower-meta-value {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-xs);
+}
+
+.borrower-meta-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.borrower-actions-bar {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-md);
+}
+
+/* Borrower Loans Section */
+.borrower-loans {
+  background-color: var(--card-background);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--spacing-lg);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-lg);
+}
+
+.section-header h3 {
+  margin: 0;
+}
+
+/* Borrower Notes Section */
+.borrower-notes {
+  background-color: var(--card-background);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--spacing-lg);
+}
+
+.note {
+  border-left: 3px solid var(--primary-color);
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  background-color: rgba(124, 58, 237, 0.05);
+  margin-bottom: var(--spacing-md);
+}
+
+.note-date {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.note-content {
+  font-size: 0.875rem;
+  white-space: pre-line;
+}
+
+.add-note-form {
+  margin-top: var(--spacing-lg);
+}
+
+/* Borrower Payment History */
+.borrower-payment-history {
+  background-color: var(--card-background);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--spacing-lg);
+}
+
+/* Borrower Documents */
+.borrower-documents {
+  background-color: var(--card-background);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--spacing-lg);
+}
+
+.documents-list {
+  margin-top: var(--spacing-md);
+}
+
+.document-item {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-md);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-sm);
+}
+
+.document-icon {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(124, 58, 237, 0.1);
+  color: var(--primary-color);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: var(--spacing-md);
+}
+
+.document-info {
+  flex: 1;
+}
+
+.document-name {
+  font-weight: 500;
+  margin: 0 0 var(--spacing-xs) 0;
+}
+
+.document-meta {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.document-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.upload-document {
+  margin-top: var(--spacing-md);
+}
+
+/* Borrower Additional Info */
+.additional-info {
+  background-color: var(--card-background);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--spacing-lg);
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-md);
+}
+
+@media (max-width: 768px) {
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-label {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.info-value {
+  font-weight: 500;
+}
