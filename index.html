@@ -1,1885 +1,429 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>LoanBuddy - Gerenciador de Empréstimos</title>
-  <meta name="description" content="Sistema completo de gerenciamento de empréstimos com controle de mutuários, pagamentos e relatórios financeiros.">
-  
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="LoanBuddy - Gerenciador de Empréstimos">
-  <meta property="og:description" content="Sistema completo de gerenciamento de empréstimos com controle de mutuários, pagamentos e relatórios financeiros.">
-  
-  <!-- PWA Manifest -->
-  <link rel="manifest" href="/manifest.json">
-  
-  <!-- PWA Meta Tags -->
-  <meta name="theme-color" content="#5b21b6">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="LoanBuddy">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="application-name" content="LoanBuddy">
-  
-  <!-- PWA Icons -->
-  <link rel="icon" type="image/png" sizes="32x32" href="/icons/icon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/icons/icon-16x16.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="/icons/icon-152x152.png">
-  <link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144x144.png">
-  <link rel="apple-touch-icon" sizes="120x120" href="/icons/icon-120x120.png">
-  <link rel="apple-touch-icon" sizes="114x114" href="/icons/icon-114x114.png">
-  <link rel="apple-touch-icon" sizes="76x76" href="/icons/icon-76x76.png">
-  <link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-72x72.png">
-  <link rel="apple-touch-icon" sizes="60x60" href="/icons/icon-60x60.png">
-  <link rel="apple-touch-icon" sizes="57x57" href="/icons/icon-57x57.png">
-  
-  <!-- Microsoft Tiles -->
-  <meta name="msapplication-TileColor" content="#5b21b6">
-  <meta name="msapplication-TileImage" content="/icons/ms-icon-144x144.png">
-  <meta name="msapplication-config" content="/browserconfig.xml">
-  
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- CSS Files -->
-  <link rel="stylesheet" href="./css/styles.css">
-  <link rel="stylesheet" href="./css/dashboard.css">
-  <link rel="stylesheet" href="./css/loans.css">
-  <link rel="stylesheet" href="./css/borrowers.css">
-  <link rel="stylesheet" href="./css/payments.css">
-  <link rel="stylesheet" href="./css/reports.css">
-  <link rel="stylesheet" href="./css/settings.css">
-  
-  <!-- Preconnect for performance -->
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>loanBuddy Pro - Sistema de Gestão de Contratos</title>
+    <meta name="description" content="Sistema completo para gerenciar contratos e pagamentos">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.462.0/lucide.min.css" rel="stylesheet">
 </head>
-<body class="light-theme">
-  <div class="app-container">
-    <!-- Sidebar -->
-    <aside class="sidebar">
-      <div class="sidebar-header">
-        <h2 class="logo">LoanBuddy</h2>
-      </div>
-      <nav class="sidebar-nav">
-        <ul>
-          <li><a href="#" class="sidebar-link active" data-page="dashboard"><i class="fas fa-chart-line"></i> Dashboard</a></li>
-          <li><a href="#" class="sidebar-link" data-page="loans"><i class="fas fa-money-bill-wave"></i> Empréstimos</a></li>
-          <li><a href="#" class="sidebar-link" data-page="borrowers"><i class="fas fa-users"></i> Mutuários</a></li>
-          <li><a href="#" class="sidebar-link" data-page="payments"><i class="fas fa-receipt"></i> Pagamentos</a></li>
-          <li><a href="#" class="sidebar-link" data-page="reports"><i class="fas fa-file-alt"></i> Relatórios</a></li>
-          <li><a href="#" class="sidebar-link" data-page="settings"><i class="fas fa-cog"></i> Configurações</a></li>
-        </ul>
-      </nav>
-    </aside>
-
-    <!-- Main Content -->
-    <div class="main-content">
-      <!-- Header -->
-      <header class="header">
-        <div class="header-left">
-          <button class="mobile-toggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
-          <h1 class="page-title">Dashboard</h1>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i data-lucide="credit-card"></i>
+                    </div>
+                    <h1 class="logo-text">loanBuddy Pro</h1>
+                </div>
+                <button class="btn btn-gradient" onclick="navigateToAuth()">
+                    Fazer Login
+                    <i data-lucide="arrow-right"></i>
+                </button>
+            </div>
         </div>
-        <div class="header-right">
-          <button class="theme-toggle" aria-label="Alternar tema"><i class="fas fa-moon"></i></button>
-          <button class="sync-status" aria-label="Status de sincronização"><i class="fas fa-cloud-upload-alt"></i></button>
-          <div class="user-profile">
-            <span>Minha Conta</span>
-            <i class="fas fa-user-circle"></i>
-          </div>
-        </div>
-      </header>
+    </header>
 
-      <!-- Main content area -->
-      <main class="content">
-        <!-- Dashboard Page - visible by default -->
-        <section class="page active" id="dashboard-page">
-          <!-- Dashboard Welcome & Summary Banner -->
-          <div class="dashboard-banner">
-            <div class="welcome-message">
-              <h2><i class="fas fa-chart-pie"></i> Visão Geral</h2>
-              <p>Bem-vindo ao seu painel financeiro. Resumo atualizado em <span class="current-date">04/05/2025</span></p>
-            </div>
-            <div class="summary-stats">
-              <div class="summary-item">
-                <div class="summary-icon"><i class="fas fa-money-bill-wave"></i></div>
-                <div class="summary-data">
-                  <span class="value">3</span>
-                  <span class="label">Empréstimos Ativos</span>
-                </div>
-              </div>
-              <div class="summary-item">
-                <div class="summary-icon"><i class="fas fa-users"></i></div>
-                <div class="summary-data">
-                  <span class="value">3</span>
-                  <span class="label">Mutuários</span>
-                </div>
-              </div>
-              <div class="summary-item">
-                <div class="summary-icon"><i class="fas fa-receipt"></i></div>
-                <div class="summary-data">
-                  <span class="value">7</span>
-                  <span class="label">Pagamentos</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Dashboard Summary Metrics -->
-          <div class="metrics-grid">
-            <div class="metric-card">
-              <div class="metric-info">
-                <p class="metric-title">Total Emprestado</p>
-                <h3 class="metric-value">R$ 35.000,00</h3>
-                <div class="metric-change positive">
-                  <i class="fas fa-arrow-up"></i> 15% este mês
-                </div>
-              </div>
-              <div class="metric-icon bg-emerald">
-                <i class="fas fa-dollar-sign"></i>
-              </div>
-            </div>
-            
-            <div class="metric-card">
-              <div class="metric-info">
-                <p class="metric-title">Juros Acumulados</p>
-                <h3 class="metric-value">R$ 2.740,50</h3>
-                <div class="metric-change positive">
-                  <i class="fas fa-arrow-up"></i> 8% este mês
-                </div>
-              </div>
-              <div class="metric-icon bg-blue">
-                <i class="fas fa-chart-line"></i>
-              </div>
-            </div>
-            
-            <div class="metric-card">
-              <div class="metric-info">
-                <p class="metric-title">Recebido este Mês</p>
-                <h3 class="metric-value">R$ 437,50</h3>
-                <div class="metric-change positive">
-                  <i class="fas fa-wallet"></i> Atual no mês
-                </div>
-              </div>
-              <div class="metric-icon bg-green">
-                <i class="fas fa-hand-holding-usd"></i>
-              </div>
-            </div>
-            
-            <div class="metric-card alert">
-              <div class="metric-info">
-                <p class="metric-title">Valor em Atraso</p>
-                <h3 class="metric-value">R$ 525,00</h3>
-                <div class="metric-change negative">
-                  <i class="fas fa-exclamation-triangle"></i> 1 empréstimo em atraso
-                </div>
-              </div>
-              <div class="metric-icon bg-amber">
-                <i class="fas fa-clock"></i>
-              </div>
-            </div>
-            
-            <div class="metric-card">
-              <div class="metric-info">
-                <p class="metric-title">Previsto para Maio</p>
-                <h3 class="metric-value">R$ 437,50</h3>
-                <div class="metric-change positive">
-                  <i class="fas fa-calendar-check"></i> Estimativa do mês
-                </div>
-              </div>
-              <div class="metric-icon bg-violet">
-                <i class="fas fa-calendar-alt"></i>
-              </div>
-            </div>
-          </div>
-
-          <!-- Quick Actions -->
-          <div class="quick-actions">
-            <h3><i class="fas fa-bolt"></i> Ações Rápidas</h3>
-            <div class="action-buttons">
-              <button class="action-btn" data-action="new-loan">
-                <i class="fas fa-plus-circle"></i>
-                <span>Novo Empréstimo</span>
-              </button>
-              <button class="action-btn" data-action="new-borrower">
-                <i class="fas fa-user-plus"></i>
-                <span>Novo Mutuário</span>
-              </button>
-              <button class="action-btn" data-action="register-payment">
-                <i class="fas fa-hand-holding-usd"></i>
-                <span>Registrar Pagamento</span>
-              </button>
-              <button class="action-btn" data-action="generate-report">
-                <i class="fas fa-file-export"></i>
-                <span>Gerar Relatório</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Charts Row -->
-          <div class="charts-grid">
-            <div class="chart-container loan-status-chart">
-              <h3><i class="fas fa-chart-pie"></i> Status dos Empréstimos</h3>
-              <canvas id="loanStatusChart"></canvas>
-            </div>
-            <div class="chart-container status-summary">
-              <h3><i class="fas fa-list-ul"></i> Resumo por Status</h3>
-              <div class="status-items">
-                <div class="status-item">
-                  <div class="status-color active"></div>
-                  <div class="status-info">
-                    <h4>Ativos</h4>
-                    <p><i class="fas fa-money-check-alt"></i> 2 empréstimos</p>
-                    <p><i class="fas fa-dollar-sign"></i> R$ 25.000,00</p>
-                  </div>
-                </div>
-                <div class="status-item">
-                  <div class="status-color overdue"></div>
-                  <div class="status-info">
-                    <h4>Em Atraso</h4>
-                    <p><i class="fas fa-exclamation-circle"></i> 1 empréstimo</p>
-                    <p><i class="fas fa-dollar-sign"></i> R$ 10.000,00</p>
-                  </div>
-                </div>
-                <div class="status-item">
-                  <div class="status-color paid"></div>
-                  <div class="status-info">
-                    <h4>Pagos</h4>
-                    <p><i class="fas fa-check-circle"></i> 0 empréstimos</p>
-                    <p><i class="fas fa-dollar-sign"></i> R$ 0,00</p>
-                  </div>
-                </div>
-                <div class="status-item">
-                  <div class="status-color defaulted"></div>
-                  <div class="status-info">
-                    <h4>Inadimplentes</h4>
-                    <p><i class="fas fa-times-circle"></i> 0 empréstimos</p>
-                    <p><i class="fas fa-dollar-sign"></i> R$ 0,00</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Payment Trends -->
-          <div class="chart-container payment-trends">
-            <h3><i class="fas fa-chart-line"></i> Tendências de Pagamentos</h3>
-            <canvas id="paymentTrendsChart"></canvas>
-          </div>
-
-          <!-- Recent Loans and Upcoming Payments -->
-          <div class="two-col-grid">
-            <div class="panel recent-loans">
-              <h3><i class="fas fa-history"></i> Empréstimos Recentes</h3>
-              <table class="data-table">
-                <thead>
-                  <tr>
-                    <th>Mutuário</th>
-                    <th>Valor</th>
-                    <th>Data</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><i class="fas fa-user"></i> João Silva</td>
-                    <td>R$ 5.000,00</td>
-                    <td>01/05/2025</td>
-                    <td><span class="status active">Ativo</span></td>
-                  </tr>
-                  <tr>
-                    <td><i class="fas fa-user"></i> Maria Santos</td>
-                    <td>R$ 10.000,00</td>
-                    <td>27/04/2025</td>
-                    <td><span class="status overdue">Atrasado</span></td>
-                  </tr>
-                  <tr>
-                    <td><i class="fas fa-user"></i> Pedro Oliveira</td>
-                    <td>R$ 20.000,00</td>
-                    <td>15/04/2025</td>
-                    <td><span class="status active">Ativo</span></td>
-                  </tr>
-                </tbody>
-              </table>
-              <a href="#" class="view-all" data-page="loans">Ver todos <i class="fas fa-arrow-right"></i></a>
-            </div>
-            
-            <div class="panel upcoming-payments">
-              <h3><i class="fas fa-calendar"></i> Próximos Pagamentos</h3>
-              <table class="data-table">
-                <thead>
-                  <tr>
-                    <th>Mutuário</th>
-                    <th>Valor</th>
-                    <th>Data</th>
-                    <th>Dias</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><i class="fas fa-user"></i> João Silva</td>
-                    <td>R$ 437,50</td>
-                    <td>08/05/2025</td>
-                    <td><span class="badge-upcoming">4</span></td>
-                  </tr>
-                  <tr>
-                    <td><i class="fas fa-user"></i> Pedro Oliveira</td>
-                    <td>R$ 866,67</td>
-                    <td>03/06/2025</td>
-                    <td><span class="badge-future">30</span></td>
-                  </tr>
-                  <tr>
-                    <td><i class="fas fa-user"></i> Maria Santos</td>
-                    <td>R$ 525,00</td>
-                    <td>27/04/2025</td>
-                    <td><span class="badge-overdue">-7</span></td>
-                  </tr>
-                </tbody>
-              </table>
-              <a href="#" class="view-all" data-page="payments">Ver todos <i class="fas fa-arrow-right"></i></a>
-            </div>
-          </div>
-
-          <!-- Overdue Loans -->
-          <div class="panel overdue-loans">
-            <h3><i class="fas fa-exclamation-triangle"></i> Empréstimos em Atraso</h3>
-            <table class="data-table">
-              <thead>
-                <tr>
-                  <th>Mutuário</th>
-                  <th>Valor Total</th>
-                  <th>Valor Atrasado</th>
-                  <th>Dias em Atraso</th>
-                  <th>Ações</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><i class="fas fa-user"></i> Maria Santos</td>
-                  <td>R$ 10.000,00</td>
-                  <td>R$ 525,00</td>
-                  <td><span class="badge-overdue">7</span></td>
-                  <td>
-                    <button class="btn-small register-payment"><i class="fas fa-money-bill"></i> Registrar Pagamento</button>
-                    <button class="btn-small contact"><i class="fas fa-phone"></i> Contatar</button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        <!-- Loans Page - hidden initially -->
-        <!-- Loans Page - hidden initially -->
-        <section class="page" id="loans-page">
-          <!-- Cabeçalho da página -->
-          <div class="page-header">
-            <div>
-              <h2>Gerenciar Empréstimos</h2>
-              <p class="text-secondary" id="archived-status-message">
-                Empréstimos arquivados <span id="archived-display-status">não são</span> exibidos nesta lista.
-                <a href="#" class="text-primary font-medium" id="toggle-archived-link">
-                  Ver empréstimos arquivados
-                </a>
-              </p>
-            </div>
-            <div class="btn-group">
-              <button class="btn-secondary" id="toggle-archived-btn">
-                <i class="fas fa-archive"></i> <span id="archived-btn-text">Ver Arquivados</span>
-              </button>
-              <button class="btn-primary" id="new-loan-btn">
-                <i class="fas fa-plus"></i> Novo Empréstimo
-              </button>
-            </div>
-          </div>
-
-          <!-- Formulário de novo empréstimo (inicialmente oculto) -->
-          <div class="card form-card" id="loan-form-container" style="display: none;">
-            <div class="card-header">
-              <h3>Novo Empréstimo</h3>
-              <button class="close-form" id="close-loan-form">
-                <i class="fas fa-times"></i>
-              </button>
-            </div>
-            <div class="card-body">
-              <form id="loan-form">
-                <div class="form-grid">
-                  <div class="form-group">
-                    <label for="loan-borrower">Mutuário*</label>
-                    <select id="loan-borrower" name="borrowerId" required>
-                      <option value="" disabled selected>Selecione um mutuário</option>
-                      <!-- Opções serão carregadas dinamicamente -->
-                    </select>
-                    <div class="form-error" id="borrower-error"></div>
-                  </div>
-                  
-                  <div class="form-group">
-                    <label for="loan-amount">Valor do Empréstimo (R$)*</label>
-                    <input type="number" id="loan-amount" name="amount" min="1" step="0.01" required placeholder="0.00">
-                    <div class="form-error" id="amount-error"></div>
-                  </div>
-                  
-                  <div class="form-group">
-                    <label for="loan-interest-rate">Taxa de Juros (%)*</label>
-                    <input type="number" id="loan-interest-rate" name="interestRate" min="0" step="0.1" required placeholder="5.0">
-                    <div class="form-error" id="interest-rate-error"></div>
-                  </div>
-                  
-                  <div class="form-group">
-                    <label for="loan-term">Prazo (meses)*</label>
-                    <input type="number" id="loan-term" name="term" min="1" required placeholder="12">
-                    <div class="form-error" id="term-error"></div>
-                  </div>
-                  
-                  <div class="form-group">
-                    <label for="loan-start-date">Data de Início*</label>
-                    <input type="date" id="loan-start-date" name="startDate" required>
-                    <div class="form-error" id="start-date-error"></div>
-                  </div>
-                  
-                  <div class="form-group">
-                    <label for="loan-payment-frequency">Frequência de Pagamento*</label>
-                    <select id="loan-payment-frequency" name="paymentFrequency" required>
-                      <option value="monthly">Mensal</option>
-                      <option value="biweekly">Quinzenal</option>
-                      <option value="weekly">Semanal</option>
-                    </select>
-                    <div class="form-error" id="payment-frequency-error"></div>
-                  </div>
-                  
-                  <div class="form-group full-width">
-                    <label for="loan-description">Descrição</label>
-                    <textarea id="loan-description" name="description" rows="3" placeholder="Finalidade do empréstimo"></textarea>
-                  </div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="badge">
+                    <i data-lucide="star"></i>
+                    Nova versão com IA disponível
                 </div>
                 
-                <div class="form-actions">
-                  <button type="button" class="btn-secondary" id="cancel-loan-btn">Cancelar</button>
-                  <button type="submit" class="btn-primary" id="save-loan-btn">Salvar Empréstimo</button>
+                <h1 class="hero-title">
+                    <span class="text-gradient-primary">Revolucione</span> seu<br>
+                    <span class="text-gradient-accent">Negócio de Contratos</span>
+                </h1>
+                
+                <p class="hero-description">
+                    O sistema mais completo e intuitivo para gerenciar contratos, controlar pagamentos 
+                    e fazer seu negócio crescer com <strong>segurança</strong>, <strong>eficiência</strong> e <strong>inteligência artificial</strong>.
+                </p>
+                
+                <div class="hero-buttons">
+                    <button class="btn btn-hero" onclick="navigateToAuth('register')">
+                        <i data-lucide="zap"></i>
+                        Teste Grátis por 3 Dias
+                    </button>
+                    <button class="btn btn-outline" onclick="scrollToDemo()">
+                        <i data-lucide="play"></i>
+                        Ver Demonstração
+                    </button>
                 </div>
-              </form>
-            </div>
-          </div>
 
-          <!-- Filtros de pesquisa -->
-          <div class="card" id="loans-filter-card">
-            <div class="card-body">
-              <div class="filters">
-                <div class="search-box">
-                  <i class="fas fa-search"></i>
-                  <input type="text" id="loan-search" placeholder="Pesquisar empréstimos...">
+                <div class="hero-features">
+                    <div class="hero-feature">
+                        <i data-lucide="check"></i>
+                        <span>Sem cartão de crédito</span>
+                    </div>
+                    <div class="hero-feature">
+                        <i data-lucide="check"></i>
+                        <span>Acesso total por 3 dias</span>
+                    </div>
+                    <div class="hero-feature">
+                        <i data-lucide="check"></i>
+                        <span>Sem compromisso</span>
+                    </div>
                 </div>
-                <div class="filter-group">
-                  <label for="status-filter">Status:</label>
-                  <select id="status-filter">
-                    <option value="all">Todos</option>
-                    <option value="active">Ativos</option>
-                    <option value="overdue">Em Atraso</option>
-                    <option value="paid">Pagos</option>
-                    <option value="defaulted">Inadimplentes</option>
-                  </select>
-                </div>
-                <div class="filter-group">
-                  <label for="sort-filter">Ordenar por:</label>
-                  <select id="sort-filter">
-                    <option value="date-desc">Mais recentes</option>
-                    <option value="date-asc">Mais antigos</option>
-                    <option value="amount-desc">Maior valor</option>
-                    <option value="amount-asc">Menor valor</option>
-                  </select>
-                </div>
-                <button class="btn-filter clear" id="clear-filters-btn">
-                  <i class="fas fa-times"></i> Limpar
-                </button>
-              </div>
             </div>
-          </div>
+        </div>
+    </section>
 
-          <!-- Tabela de empréstimos -->
-          <div class="card" id="loans-table-card">
-            <div class="card-header">
-              <h3>Lista de Empréstimos</h3>
-            </div>
-            <div class="table-container">
-              <table class="data-table" id="loans-table">
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Mutuário</th>
-                    <th>Valor</th>
-                    <th>Taxa</th>
-                    <th>Prazo</th>
-                    <th>Vencimento</th>
-                    <th>Status</th>
-                    <th>Ações</th>
-                  </tr>
-                </thead>
-                <tbody id="loans-table-body">
-                  <!-- Os dados serão carregados dinamicamente via JavaScript -->
-                  <tr class="loading-row">
-                    <td colspan="8" class="text-center">Carregando empréstimos...</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="pagination" id="loans-pagination">
-              <button class="pagination-btn" id="prev-page" disabled>
-                <i class="fas fa-chevron-left"></i> Anterior
-              </button>
-              <div class="page-info">Página <span id="current-page">1</span> de <span id="total-pages">1</span></div>
-              <button class="pagination-btn" id="next-page" disabled>
-                Próxima <i class="fas fa-chevron-right"></i>
-              </button>
-            </div>
-          </div>
-
-          <!-- Template para quando não há empréstimos -->
-          <div class="empty-state" id="no-loans-message" style="display: none;">
-            <div class="empty-icon">
-              <i class="fas fa-money-bill-wave"></i>
-            </div>
-            <h3>Sem empréstimos</h3>
-            <p>Você ainda não tem empréstimos cadastrados.</p>
-            <button class="btn-primary" id="empty-add-loan-btn">
-              <i class="fas fa-plus"></i> Adicionar Empréstimo
-            </button>
-          </div>
-        </section>
-        
-        <!-- Archived Loans Page - hidden initially -->
-        <section class="page" id="archived-loans-page">
-          <div class="page-header">
-            <div>
-              <h2>Empréstimos Arquivados</h2>
-              <p class="text-secondary">
-                Visualize todos os empréstimos que foram pagos e arquivados
-              </p>
-            </div>
-            <button class="btn-secondary" id="back-to-loans-btn">
-              <i class="fas fa-arrow-left"></i> Voltar para Empréstimos
-            </button>
-          </div>
-          
-          <div class="card">
-            <div class="card-header">
-              <h3>Empréstimos Arquivados</h3>
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <div class="badge badge-secondary">Funcionalidades Premium</div>
+                <h2 class="section-title">Tudo que você precisa</h2>
+                <p class="section-description">
+                    Gerencie seus contratos com eficiência máxima usando tecnologia de ponta
+                </p>
             </div>
             
-            <div class="filters">
-              <div class="search-box">
-                <input type="text" id="archived-search" placeholder="Pesquisar empréstimos arquivados...">
-                <i class="fas fa-search"></i>
-              </div>
-            </div>
-            
-            <div class="table-container">
-              <table class="data-table" id="archived-loans-table">
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Mutuário</th>
-                    <th>Valor</th>
-                    <th>Taxa de Juros</th>
-                    <th>Data de Início</th>
-                    <th>Data de Pagamento</th>
-                    <th>Data de Arquivamento</th>
-                    <th>Ações</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <!-- Exemplo de linha de empréstimo arquivado -->
-                  <tr>
-                    <td>4</td>
-                    <td>Carlos Ferreira</td>
-                    <td>R$ 3.000,00</td>
-                    <td>5%</td>
-                    <td>10/03/2024</td>
-                    <td>10/04/2025</td>
-                    <td>15/04/2025</td>
-                    <td class="actions">
-                      <button class="action-icon view-loan" data-id="4" title="Ver Detalhes">
-                        <i class="fas fa-eye"></i>
-                      </button>
-                      <button class="action-icon payment-history" data-id="4" title="Histórico de Pagamentos">
-                        <i class="fas fa-credit-card"></i>
-                      </button>
-                      <button class="action-icon restore-loan" data-id="4" title="Restaurar">
-                        <i class="fas fa-undo"></i>
-                      </button>
-                    </td>
-                  </tr>
-                  <!-- Empréstimos arquivados serão carregados dinamicamente -->
-                  <tr class="empty-state" style="display: none;">
-                    <td colspan="8">
-                      <div class="empty-state-container">
-                        <i class="fas fa-archive"></i>
-                        <h3>Não há empréstimos arquivados</h3>
-                        <p>Empréstimos pagos podem ser arquivados para manter sua lista principal organizada.</p>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </section>
-
-        <!-- Borrowers Page - hidden initially -->
-        <section class="page" id="borrowers-page">
-          <div class="page-header">
-            <h2>Gerenciar Mutuários</h2>
-            <button class="btn-primary" id="new-borrower-btn">
-              <i class="fas fa-plus"></i> Novo Mutuário
-            </button>
-          </div>
-
-          <div class="filters">
-            <div class="search-box">
-              <input type="text" placeholder="Pesquisar mutuários...">
-              <i class="fas fa-search"></i>
-            </div>
-            <div class="filter-group">
-              <label>Ordenar por:</label>
-              <select id="borrower-sort-filter">
-                <option value="name-asc">Nome (A-Z)</option>
-                <option value="name-desc">Nome (Z-A)</option>
-                <option value="loans-desc">Nº de Empréstimos (maior)</option>
-                <option value="loans-asc">Nº de Empréstimos (menor)</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="borrowers-grid">
-            <div class="borrower-card">
-              <div class="borrower-header">
-                <div class="borrower-avatar">JS</div>
-                <div class="borrower-info">
-                  <h3>João Silva</h3>
-                  <p><i class="fas fa-phone"></i> (11) 98765-4321</p>
-                  <p><i class="fas fa-envelope"></i> joao.silva@email.com</p>
-                </div>
-              </div>
-              <div class="borrower-stats">
-                <div class="stat">
-                  <span class="stat-value">1</span>
-                  <span class="stat-label">Empréstimos</span>
-                </div>
-                <div class="stat">
-                  <span class="stat-value">R$ 5.000,00</span>
-                  <span class="stat-label">Total</span>
-                </div>
-                <div class="stat">
-                  <span class="stat-value stat-active">Ativo</span>
-                  <span class="stat-label">Status</span>
-                </div>
-              </div>
-              <div class="borrower-actions">
-                <button class="btn-small" title="Ver Detalhes">
-                  <i class="fas fa-eye"></i> Detalhes
-                </button>
-                <button class="btn-small" title="Editar">
-                  <i class="fas fa-edit"></i> Editar
-                </button>
-                <button class="btn-small" title="Novo Empréstimo">
-                  <i class="fas fa-plus"></i> Novo Empréstimo
-                </button>
-              </div>
-            </div>
-
-            <div class="borrower-card">
-              <div class="borrower-header">
-                <div class="borrower-avatar">MS</div>
-                <div class="borrower-info">
-                  <h3>Maria Santos</h3>
-                  <p><i class="fas fa-phone"></i> (11) 98765-1234</p>
-                  <p><i class="fas fa-envelope"></i> maria.santos@email.com</p>
-                </div>
-              </div>
-              <div class="borrower-stats">
-                <div class="stat">
-                  <span class="stat-value">1</span>
-                  <span class="stat-label">Empréstimos</span>
-                </div>
-                <div class="stat">
-                  <span class="stat-value">R$ 10.000,00</span>
-                  <span class="stat-label">Total</span>
-                </div>
-                <div class="stat">
-                  <span class="stat-value stat-overdue">Atrasado</span>
-                  <span class="stat-label">Status</span>
-                </div>
-              </div>
-              <div class="borrower-actions">
-                <button class="btn-small" title="Ver Detalhes">
-                  <i class="fas fa-eye"></i> Detalhes
-                </button>
-                <button class="btn-small" title="Editar">
-                  <i class="fas fa-edit"></i> Editar
-                </button>
-                <button class="btn-small" title="Novo Empréstimo">
-                  <i class="fas fa-plus"></i> Novo Empréstimo
-                </button>
-              </div>
-            </div>
-
-            <div class="borrower-card">
-              <div class="borrower-header">
-                <div class="borrower-avatar">PO</div>
-                <div class="borrower-info">
-                  <h3>Pedro Oliveira</h3>
-                  <p><i class="fas fa-phone"></i> (21) 99876-5432</p>
-                  <p><i class="fas fa-envelope"></i> pedro.oliveira@email.com</p>
-                </div>
-              </div>
-              <div class="borrower-stats">
-                <div class="stat">
-                  <span class="stat-value">1</span>
-                  <span class="stat-label">Empréstimos</span>
-                </div>
-                <div class="stat">
-                  <span class="stat-value">R$ 20.000,00</span>
-                  <span class="stat-label">Total</span>
-                </div>
-                <div class="stat">
-                  <span class="stat-value stat-active">Ativo</span>
-                  <span class="stat-label">Status</span>
-                </div>
-              </div>
-              <div class="borrower-actions">
-                <button class="btn-small" title="Ver Detalhes">
-                  <i class="fas fa-eye"></i> Detalhes
-                </button>
-                <button class="btn-small" title="Editar">
-                  <i class="fas fa-edit"></i> Editar
-                </button>
-                <button class="btn-small" title="Novo Empréstimo">
-                  <i class="fas fa-plus"></i> Novo Empréstimo
-                </button>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Payments Page - hidden initially -->
-        <section class="page" id="payments-page">
-          <div class="page-header">
-            <h2>Gerenciar Pagamentos</h2>
-            <button class="btn-primary" id="new-payment-btn">
-              <i class="fas fa-plus"></i> Registrar Pagamento
-            </button>
-          </div>
-
-          <div class="filters">
-            <div class="search-box">
-              <input type="text" placeholder="Pesquisar pagamentos...">
-              <i class="fas fa-search"></i>
-            </div>
-            <div class="filter-group">
-              <label>Período:</label>
-              <select id="period-filter">
-                <option value="all">Todos</option>
-                <option value="this-month">Este Mês</option>
-                <option value="last-month">Mês Passado</option>
-                <option value="this-year">Este Ano</option>
-                <option value="custom">Personalizado</option>
-              </select>
-            </div>
-            <div class="filter-group">
-              <label>Ordenar por:</label>
-              <select id="payment-sort-filter">
-                <option value="date-desc">Data (recente)</option>
-                <option value="date-asc">Data (antiga)</option>
-                <option value="amount-desc">Valor (maior)</option>
-                <option value="amount-asc">Valor (menor)</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="table-container">
-            <table class="data-table" id="payments-table">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Mutuário</th>
-                  <th>Empréstimo</th>
-                  <th>Valor</th>
-                  <th>Data</th>
-                  <th>Método</th>
-                  <th>Ações</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>João Silva</td>
-                  <td>Empréstimo #1</td>
-                  <td>R$ 437,50</td>
-                  <td>01/04/2025</td>
-                  <td>Transferência</td>
-                  <td class="actions">
-                    <button class="action-icon view-payment" data-id="1" title="Ver Detalhes">
-                      <i class="fas fa-eye"></i>
-                    </button>
-                    <button class="action-icon edit-payment" data-id="1" title="Editar">
-                      <i class="fas fa-edit"></i>
-                    </button>
-                    <button class="action-icon delete-payment" data-id="1" title="Excluir">
-                      <i class="fas fa-trash-alt"></i>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Maria Santos</td>
-                  <td>Empréstimo #2</td>
-                  <td>R$ 525,00</td>
-                  <td>27/03/2025</td>
-                  <td>Dinheiro</td>
-                  <td class="actions">
-                    <button class="action-icon view-payment" data-id="2" title="Ver Detalhes">
-                      <i class="fas fa-eye"></i>
-                    </button>
-                    <button class="action-icon edit-payment" data-id="2" title="Editar">
-                      <i class="fas fa-edit"></i>
-                    </button>
-                    <button class="action-icon delete-payment" data-id="2" title="Excluir">
-                      <i class="fas fa-trash-alt"></i>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>Pedro Oliveira</td>
-                  <td>Empréstimo #3</td>
-                  <td>R$ 866,67</td>
-                  <td>15/03/2025</td>
-                  <td>PIX</td>
-                  <td class="actions">
-                    <button class="action-icon view-payment" data-id="3" title="Ver Detalhes">
-                      <i class="fas fa-eye"></i>
-                    </button>
-                    <button class="action-icon edit-payment" data-id="3" title="Editar">
-                      <i class="fas fa-edit"></i>
-                    </button>
-                    <button class="action-icon delete-payment" data-id="3" title="Excluir">
-                      <i class="fas fa-trash-alt"></i>
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div class="pagination">
-            <button class="pagination-btn" disabled><i class="fas fa-chevron-left"></i></button>
-            <button class="pagination-btn active">1</button>
-            <button class="pagination-btn">2</button>
-            <button class="pagination-btn">3</button>
-            <button class="pagination-btn"><i class="fas fa-chevron-right"></i></button>
-          </div>
-        </section>
-
-        <!-- Reports Page - hidden initially -->
-        <section class="page" id="reports-page">
-          <div class="page-header">
-            <div>
-              <h2>Relatórios Financeiros</h2>
-              <p class="text-secondary">Gere relatórios detalhados para análise e exportação</p>
-            </div>
-            <div class="btn-group">
-              <button class="btn-secondary" id="print-report-btn">
-                <i class="fas fa-print"></i> Imprimir
-              </button>
-              <button class="btn-primary" id="export-pdf-btn">
-                <i class="fas fa-file-pdf"></i> Exportar PDF
-              </button>
-            </div>
-          </div>
-          
-          <!-- Resumo rápido de métricas -->
-          <div class="metrics-grid">
-            <div class="metric-card">
-              <div class="metric-info">
-                <p class="metric-title">Total Emprestado</p>
-                <h3 class="metric-value" id="report-total-loaned">R$ 35.000,00</h3>
-              </div>
-              <div class="metric-icon bg-emerald">
-                <i class="fas fa-dollar-sign"></i>
-              </div>
-            </div>
-            
-            <div class="metric-card">
-              <div class="metric-info">
-                <p class="metric-title">Juros Acumulados</p>
-                <h3 class="metric-value" id="report-total-interest">R$ 2.740,50</h3>
-              </div>
-              <div class="metric-icon bg-blue">
-                <i class="fas fa-chart-line"></i>
-              </div>
-            </div>
-            
-            <div class="metric-card">
-              <div class="metric-info">
-                <p class="metric-title">Recebido este Mês</p>
-                <h3 class="metric-value" id="report-received-month">R$ 437,50</h3>
-              </div>
-              <div class="metric-icon bg-green">
-                <i class="fas fa-hand-holding-usd"></i>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Controles de filtro -->
-          <div class="filter-controls">
-            <div class="filter-group">
-              <label for="report-type">Tipo de Relatório</label>
-              <select id="report-type">
-                <option value="summary">Resumo Geral</option>
-                <option value="loans">Empréstimos</option>
-                <option value="payments">Pagamentos</option>
-              </select>
-            </div>
-            <div class="filter-group">
-              <label for="report-period">Período</label>
-              <select id="report-period">
-                <option value="month">Último mês</option>
-                <option value="quarter">Últimos 3 meses</option>
-                <option value="year">Último ano</option>
-                <option value="all">Todo o período</option>
-              </select>
-            </div>
-          </div>
-          
-          <!-- Container do relatório -->
-          <div class="report-container">
-            <!-- Tabs do relatório -->
-            <div class="report-tabs">
-              <button class="report-tab active" data-tab="summary">Resumo</button>
-              <button class="report-tab" data-tab="loans">Empréstimos</button>
-              <button class="report-tab" data-tab="payments">Pagamentos</button>
-            </div>
-            
-            <!-- Conteúdo do relatório -->
-            <div class="report-content">
-              <!-- Tab Resumo -->
-              <div class="report-tab-content active" id="summary-tab">
-                <div class="report-header">
-                  <h3>Relatório Financeiro</h3>
-                  <p class="report-period">Período: Último mês</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i data-lucide="bar-chart-3"></i>
+                    </div>
+                    <h3 class="feature-title">Dashboard Inteligente</h3>
+                    <p class="feature-description">Visualize todos os seus contratos, pagamentos e métricas em tempo real com gráficos interativos e insights automatizados.</p>
                 </div>
                 
-                <!-- Gráficos -->
-                <div class="charts-grid">
-                  <!-- Gráfico de Status dos Empréstimos -->
-                  <div class="chart-container">
-                    <h4><i class="fas fa-chart-pie"></i> Status dos Empréstimos</h4>
-                    <canvas id="reportLoanStatusChart" width="400" height="300"></canvas>
-                  </div>
-                  
-                  <!-- Gráfico de Pagamentos por Mês -->
-                  <div class="chart-container">
-                    <h4><i class="fas fa-chart-bar"></i> Pagamentos por Mês</h4>
-                    <canvas id="reportPaymentsTrendChart" width="400" height="300"></canvas>
-                  </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i data-lucide="users"></i>
+                    </div>
+                    <h3 class="feature-title">Gestão de Mutuários</h3>
+                    <p class="feature-description">Cadastre e gerencie informações completas dos seus clientes com histórico de crédito e análise de risco.</p>
                 </div>
                 
-                <!-- Tabela de Status -->
-                <div class="report-table-container">
-                  <h4>Status Atual</h4>
-                  <table class="data-table">
-                    <thead>
-                      <tr>
-                        <th>Status</th>
-                        <th>Quantidade</th>
-                        <th>Percentual</th>
-                      </tr>
-                    </thead>
-                    <tbody id="status-table-body">
-                      <tr>
-                        <td><span class="status active">Ativos</span></td>
-                        <td>2</td>
-                        <td>67%</td>
-                      </tr>
-                      <tr>
-                        <td><span class="status overdue">Em Atraso</span></td>
-                        <td>1</td>
-                        <td>33%</td>
-                      </tr>
-                      <tr>
-                        <td><span class="status paid">Pagos</span></td>
-                        <td>0</td>
-                        <td>0%</td>
-                      </tr>
-                      <tr>
-                        <td><span class="status defaulted">Inadimplentes</span></td>
-                        <td>0</td>
-                        <td>0%</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              
-              <!-- Tab Empréstimos -->
-              <div class="report-tab-content" id="loans-tab">
-                <div class="report-header">
-                  <h3>Relatório de Empréstimos</h3>
-                  <p class="report-period">Período: Último mês</p>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i data-lucide="credit-card"></i>
+                    </div>
+                    <h3 class="feature-title">Controle de Pagamentos</h3>
+                    <p class="feature-description">Acompanhe vencimentos, registre pagamentos e envie lembretes automáticos via WhatsApp e email.</p>
                 </div>
                 
-                <div class="report-table-container">
-                  <table class="data-table">
-                    <thead>
-                      <tr>
-                        <th>Mutuário</th>
-                        <th>Valor</th>
-                        <th>Taxa</th>
-                        <th>Data de Emissão</th>
-                        <th>Vencimento</th>
-                        <th>Status</th>
-                      </tr>
-                    </thead>
-                    <tbody id="loans-table-body">
-                      <tr>
-                        <td>João Silva</td>
-                        <td>R$ 5.000,00</td>
-                        <td>1,5% a.m.</td>
-                        <td>01/05/2025</td>
-                        <td>01/05/2026</td>
-                        <td><span class="status active">Ativo</span></td>
-                      </tr>
-                      <tr>
-                        <td>Maria Santos</td>
-                        <td>R$ 10.000,00</td>
-                        <td>1,5% a.m.</td>
-                        <td>27/04/2025</td>
-                        <td>27/04/2026</td>
-                        <td><span class="status overdue">Em Atraso</span></td>
-                      </tr>
-                      <tr>
-                        <td>Pedro Oliveira</td>
-                        <td>R$ 20.000,00</td>
-                        <td>1,5% a.m.</td>
-                        <td>15/04/2025</td>
-                        <td>15/04/2027</td>
-                        <td><span class="status active">Ativo</span></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              
-              <!-- Tab Pagamentos -->
-              <div class="report-tab-content" id="payments-tab">
-                <div class="report-header">
-                  <h3>Relatório de Pagamentos</h3>
-                  <p class="report-period">Período: Último mês</p>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i data-lucide="shield"></i>
+                    </div>
+                    <h3 class="feature-title">Segurança Total</h3>
+                    <p class="feature-description">Seus dados protegidos com criptografia de ponta, backup automático na nuvem e compliance LGPD.</p>
                 </div>
                 
-                <div class="report-table-container">
-                  <table class="data-table">
-                    <thead>
-                      <tr>
-                        <th>Data</th>
-                        <th>Mutuário</th>
-                        <th>Valor</th>
-                        <th>Principal</th>
-                        <th>Juros</th>
-                      </tr>
-                    </thead>
-                    <tbody id="payments-table-body">
-                      <!-- Dados de exemplo, serão preenchidos dinamicamente -->
-                    </tbody>
-                  </table>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i data-lucide="clock"></i>
+                    </div>
+                    <h3 class="feature-title">Notificações Inteligentes</h3>
+                    <p class="feature-description">Receba alertas personalizados de vencimentos, atrasos e oportunidades de negócio em tempo real.</p>
                 </div>
-              </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i data-lucide="trending-up"></i>
+                    </div>
+                    <h3 class="feature-title">Relatórios Avançados</h3>
+                    <p class="feature-description">Análises detalhadas de performance, lucratividade e projeções com IA para otimizar seu negócio.</p>
+                </div>
             </div>
-          </div>
-          
-          <!-- Lista de relatórios disponíveis -->
-          <div class="reports-heading">
-            <h3><i class="fas fa-file-alt"></i> Outros Relatórios Disponíveis</h3>
-          </div>
-          
-          <div class="reports-grid">
-            <div class="report-card">
-              <div class="report-icon">
-                <i class="fas fa-exclamation-triangle"></i>
-              </div>
-              <div class="report-info">
-                <h3>Empréstimos em Atraso</h3>
-                <p>Lista detalhada de todos os empréstimos atrasados</p>
-              </div>
-              <div class="report-actions">
-                <button class="btn-small" data-report="overdue">Gerar</button>
-              </div>
-            </div>
+        </div>
+    </section>
 
-            <div class="report-card">
-              <div class="report-icon">
-                <i class="fas fa-users"></i>
-              </div>
-              <div class="report-info">
-                <h3>Mutuários</h3>
-                <p>Análise detalhada por mutuário</p>
-              </div>
-              <div class="report-actions">
-                <button class="btn-small" data-report="borrowers">Gerar</button>
-              </div>
-            </div>
-
-            <div class="report-card">
-              <div class="report-icon">
-                <i class="fas fa-file-invoice-dollar"></i>
-              </div>
-              <div class="report-info">
-                <h3>Demonstração de Resultados</h3>
-                <p>Relatório resumido de lucros e perdas</p>
-              </div>
-              <div class="report-actions">
-                <button class="btn-small" data-report="financial">Gerar</button>
-              </div>
-            </div>
-
-            <div class="report-card">
-              <div class="report-icon">
-                <i class="fas fa-download"></i>
-              </div>
-              <div class="report-info">
-                <h3>Exportar Todos os Dados</h3>
-                <p>Baixe todos os dados em formato CSV</p>
-              </div>
-              <div class="report-actions">
-                <button class="btn-small" data-report="export">Exportar</button>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Settings Page - hidden initially -->
-        <section class="page" id="settings-page">
-          <div class="page-header">
-            <div>
-              <h2>Configurações</h2>
-              <p class="text-secondary">Personalize o sistema de acordo com suas preferências</p>
-            </div>
-            <button class="btn-primary" id="save-settings-btn">
-              <i class="fas fa-save"></i> Salvar Alterações
-            </button>
-          </div>
-
-          <div class="settings-container">
-            <!-- Preferências Gerais -->
-            <div class="settings-section">
-              <h3><i class="fas fa-sliders-h"></i> Preferências Gerais</h3>
-              
-              <div class="setting-item">
-                <div>
-                  <label>Tema</label>
-                  <div class="setting-description">Escolha entre tema claro ou escuro</div>
-                </div>
-                <div class="setting-control">
-                  <select id="theme-select">
-                    <option value="light">Claro</option>
-                    <option value="dark">Escuro</option>
-                    <option value="system">Sistema</option>
-                  </select>
-                </div>
-              </div>
-              
-              <div class="setting-item">
-                <div>
-                  <label>Moeda</label>
-                  <div class="setting-description">Formato de moeda para valores</div>
-                </div>
-                <div class="setting-control">
-                  <select id="currency-select">
-                    <option value="BRL">Real (R$)</option>
-                    <option value="USD">Dólar (US$)</option>
-                    <option value="EUR">Euro (€)</option>
-                  </select>
-                </div>
-              </div>
-              
-              <div class="setting-item">
-                <div>
-                  <label>Formato de Data</label>
-                  <div class="setting-description">Como as datas serão exibidas</div>
-                </div>
-                <div class="setting-control">
-                  <select id="date-format-select">
-                    <option value="DD/MM/YYYY">DD/MM/AAAA</option>
-                    <option value="MM/DD/YYYY">MM/DD/AAAA</option>
-                    <option value="YYYY-MM-DD">AAAA-MM-DD</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-
-            <!-- Configurações de Empréstimos -->
-            <div class="settings-section">
-              <h3><i class="fas fa-money-bill-wave"></i> Configurações de Empréstimos</h3>
-              
-              <div class="setting-item">
-                <div>
-                  <label>Taxa de Juros Padrão</label>
-                  <div class="setting-description">Aplicado a novos empréstimos</div>
-                </div>
-                <div class="setting-control">
-                  <input type="number" id="default-interest-rate" value="5" min="0" max="100" step="0.1">
-                  <span class="unit">%</span>
-                </div>
-              </div>
-              
-              <div class="setting-item">
-                <div>
-                  <label>Período de Pagamento Padrão</label>
-                  <div class="setting-description">Frequência de pagamentos preferida</div>
-                </div>
-                <div class="setting-control">
-                  <select id="default-payment-period">
-                    <option value="monthly">Mensal</option>
-                    <option value="biweekly">Quinzenal</option>
-                    <option value="weekly">Semanal</option>
-                  </select>
-                </div>
-              </div>
-              
-              <div class="setting-item">
-                <div>
-                  <label>Dias em Atraso para Inadimplência</label>
-                  <div class="setting-description">Quando marcar como inadimplente</div>
-                </div>
-                <div class="setting-control">
-                  <input type="number" id="default-grace-days" value="30" min="1" max="180">
-                  <span class="unit">dias</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Notificações -->
-            <div class="settings-section">
-              <h3><i class="fas fa-bell"></i> Notificações</h3>
-              
-              <div class="setting-item">
-                <div>
-                  <label>Ativar Notificações</label>
-                  <div class="setting-description">Receba alertas no navegador</div>
-                </div>
-                <div class="setting-control">
-                  <div class="toggle">
-                    <input type="checkbox" id="notifications-toggle" checked>
-                    <label for="notifications-toggle" class="toggle-switch"></label>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="setting-item">
-                <div>
-                  <label>Lembrete de Pagamento</label>
-                  <div class="setting-description">Dias antes do vencimento</div>
-                </div>
-                <div class="setting-control">
-                  <input type="number" id="payment-reminder-days" value="3" min="1" max="14">
-                  <span class="unit">dias</span>
-                </div>
-              </div>
-              
-              <div class="setting-item">
-                <div>
-                  <label>Notificar Sobre Atrasos</label>
-                  <div class="setting-description">Alertas de pagamentos em atraso</div>
-                </div>
-                <div class="setting-control">
-                  <div class="toggle">
-                    <input type="checkbox" id="late-payment-toggle" checked>
-                    <label for="late-payment-toggle" class="toggle-switch"></label>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Backup e Dados -->
-            <div class="settings-section">
-              <h3><i class="fas fa-database"></i> Backup e Dados</h3>
-              
-              <div class="setting-item">
-                <div>
-                  <label>Backup Automático</label>
-                  <div class="setting-description">Salvar cópia dos dados no navegador</div>
-                </div>
-                <div class="setting-control">
-                  <div class="toggle">
-                    <input type="checkbox" id="auto-backup-toggle" checked>
-                    <label for="auto-backup-toggle" class="toggle-switch"></label>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="setting-actions">
-                <button class="btn-secondary" id="export-data-btn">
-                  <i class="fas fa-download"></i> Exportar Dados
-                </button>
-                <button class="btn-secondary" id="import-data-btn">
-                  <i class="fas fa-upload"></i> Importar Dados
-                </button>
-                <button class="btn-danger" id="clear-data-btn">
-                  <i class="fas fa-trash-alt"></i> Limpar Todos os Dados
-                </button>
-              </div>
+    <!-- Video Demo Section -->
+    <section id="demo" class="demo">
+        <div class="container">
+            <div class="section-header">
+                <div class="badge badge-primary">Demonstração Completa</div>
+                <h2 class="section-title">Veja o loanBuddy em Ação</h2>
+                <p class="section-description">
+                    Descubra como transformar sua gestão financeira com uma demonstração completa do sistema. 
+                    Veja todas as funcionalidades em detalhes e entenda por que somos a escolha de milhares de empresários.
+                </p>
             </div>
             
-            <!-- Segurança -->
-            <div class="settings-section">
-              <h3><i class="fas fa-shield-alt"></i> Segurança</h3>
-              
-              <div class="setting-item">
-                <div>
-                  <label>Bloqueio Automático</label>
-                  <div class="setting-description">Bloquear após período de inatividade</div>
+            <div class="demo-card">
+                <div class="video-container">
+                    <div class="video-placeholder">
+                        <i data-lucide="play" class="play-icon"></i>
+                        <p>Clique para assistir a demonstração</p>
+                    </div>
                 </div>
-                <div class="setting-control">
-                  <div class="toggle">
-                    <input type="checkbox" id="auto-lock-toggle">
-                    <label for="auto-lock-toggle" class="toggle-switch"></label>
-                  </div>
+                
+                <div class="demo-content">
+                    <h3 class="demo-title">Demonstração Completa do Sistema</h3>
+                    <p class="demo-description">
+                        Assista ao vídeo e descubra como o loanBuddy pode revolucionar sua gestão de empréstimos
+                    </p>
+                    
+                    <div class="demo-buttons">
+                        <button class="btn btn-hero" onclick="navigateToAuth('register')">
+                            <i data-lucide="play"></i>
+                            Começar Teste Grátis
+                        </button>
+                        <button class="btn btn-outline" onclick="showInstallPrompt()">
+                            <i data-lucide="download"></i>
+                            Instalar App
+                        </button>
+                    </div>
                 </div>
-              </div>
-              
-              <div class="setting-item">
-                <div>
-                  <label>Tempo para Bloqueio</label>
-                  <div class="setting-description">Minutos de inatividade</div>
-                </div>
-                <div class="setting-control">
-                  <select id="lock-timeout">
-                    <option value="5">5 minutos</option>
-                    <option value="10">10 minutos</option>
-                    <option value="15">15 minutos</option>
-                    <option value="30">30 minutos</option>
-                  </select>
-                </div>
-              </div>
             </div>
-            
-            <!-- Sobre -->
-            <div class="settings-section">
-              <h3><i class="fas fa-info-circle"></i> Sobre o LoanBuddy</h3>
-              
-              <div class="about-app">
-                <div class="app-logo">
-                  <i class="fas fa-hand-holding-usd"></i>
-                </div>
-                <div class="app-info">
-                  <h4>LoanBuddy</h4>
-                  <p>Versão 1.0.0</p>
-                  <p>Gerenciador de empréstimos pessoais</p>
-                  <p>Desenvolvido por: Equipe LoanBuddy</p>
-                </div>
-              </div>
-              
-              <div class="app-links">
-                <a href="#" class="app-link"><i class="fas fa-book"></i> Documentação</a>
-                <a href="#" class="app-link"><i class="fas fa-question-circle"></i> Suporte</a>
-                <a href="#" class="app-link"><i class="fas fa-envelope"></i> Contato</a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Modal Templates -->
-        <div class="modal" id="loan-modal">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h3>Novo Empréstimo</h3>
-              <button class="close-modal"><i class="fas fa-times"></i></button>
-            </div>
-            <div class="modal-body">
-              <form id="loan-form">
-                <div class="form-group">
-                  <label for="loan-borrower">Mutuário</label>
-                  <select id="loan-borrower" required>
-                    <option value="">Selecione um mutuário</option>
-                    <option value="1">João Silva</option>
-                    <option value="2">Maria Santos</option>
-                    <option value="3">Pedro Oliveira</option>
-                  </select>
-                </div>
-                <div class="form-row">
-                  <div class="form-group">
-                    <label for="loan-amount">Valor do Empréstimo</label>
-                    <input type="number" id="loan-amount" placeholder="R$ 0,00" required min="1">
-                  </div>
-                  <div class="form-group">
-                    <label for="loan-interest">Taxa de Juros (%)</label>
-                    <input type="number" id="loan-interest" value="5" min="0" max="100" step="0.01" required>
-                  </div>
-                </div>
-                <div class="form-row">
-                  <div class="form-group">
-                    <label for="loan-term">Prazo (meses)</label>
-                    <input type="number" id="loan-term" value="12" min="1" max="360" required>
-                  </div>
-                  <div class="form-group">
-                    <label for="loan-payment-frequency">Frequência de Pagamento</label>
-                    <select id="loan-payment-frequency" required>
-                      <option value="monthly">Mensal</option>
-                      <option value="biweekly">Quinzenal</option>
-                      <option value="weekly">Semanal</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-row">
-                  <div class="form-group">
-                    <label for="loan-start-date">Data de Início</label>
-                    <input type="date" id="loan-start-date" required>
-                  </div>
-                  <div class="form-group">
-                    <label for="loan-first-payment">Data do Primeiro Pagamento</label>
-                    <input type="date" id="loan-first-payment" required>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="loan-description">Descrição</label>
-                  <textarea id="loan-description" rows="3" placeholder="Finalidade do empréstimo (opcional)"></textarea>
-                </div>
-                <div class="form-actions">
-                  <button type="button" class="btn-secondary cancel-modal">Cancelar</button>
-                  <button type="submit" class="btn-primary">Salvar Empréstimo</button>
-                </div>
-              </form>
-            </div>
-          </div>
         </div>
+    </section>
 
-        <div class="modal" id="borrower-modal">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h3>Novo Mutuário</h3>
-              <button class="close-modal"><i class="fas fa-times"></i></button>
+    <!-- Pricing Section -->
+    <section class="pricing">
+        <div class="container">
+            <div class="section-header">
+                <div class="badge badge-accent">Planos e Preços</div>
+                <h2 class="section-title">Escolha o Plano Ideal</h2>
+                <p class="section-description">
+                    Soluções flexíveis para todos os tipos de negócio, desde iniciantes até grandes empresas
+                </p>
             </div>
-            <div class="modal-body">
-              <form id="borrower-form">
-                <div class="form-row">
-                  <div class="form-group">
-                    <label for="borrower-name">Nome Completo</label>
-                    <input type="text" id="borrower-name" placeholder="Nome do mutuário" required>
-                  </div>
-                  <div class="form-group">
-                    <label for="borrower-cpf">CPF</label>
-                    <input type="text" id="borrower-cpf" placeholder="000.000.000-00">
-                  </div>
+
+            <div class="pricing-grid">
+                <!-- Plano Teste Grátis -->
+                <div class="pricing-card">
+                    <div class="pricing-badge badge-accent">TESTE GRÁTIS</div>
+                    <div class="pricing-price">
+                        <div class="price">R$ 0</div>
+                        <div class="period">3 dias grátis</div>
+                    </div>
+                    <div class="pricing-features">
+                        <div class="feature">
+                            <i data-lucide="check"></i>
+                            <span>Até 5 clientes</span>
+                        </div>
+                        <div class="feature">
+                            <i data-lucide="check"></i>
+                            <span>Até 10 contratos</span>
+                        </div>
+                        <div class="feature">
+                            <i data-lucide="check"></i>
+                            <span>Relatórios básicos</span>
+                        </div>
+                        <div class="feature">
+                            <i data-lucide="check"></i>
+                            <span>Suporte por email</span>
+                        </div>
+                        <div class="feature">
+                            <i data-lucide="check"></i>
+                            <span>Dashboard completo</span>
+                        </div>
+                        <div class="feature">
+                            <i data-lucide="check"></i>
+                            <span>Backup na nuvem</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline" onclick="navigateToAuth('register')">
+                        Começar Teste Grátis
+                    </button>
                 </div>
-                <div class="form-row">
-                  <div class="form-group">
-                    <label for="borrower-phone">Telefone</label>
-                    <input type="tel" id="borrower-phone" placeholder="(00) 00000-0000">
-                  </div>
-                  <div class="form-group">
-                    <label for="borrower-email">Email</label>
-                    <input type="email" id="borrower-email" placeholder="email@exemplo.com">
-                  </div>
+
+                <!-- Plano Básico -->
+                <div class="pricing-card pricing-card-popular">
+                    <div class="pricing-badge-popular">MAIS POPULAR</div>
+                    <div class="pricing-price">
+                        <div class="price">R$ 37</div>
+                        <div class="period">por mês</div>
+                    </div>
+                    <div class="pricing-features">
+                        <div class="feature">
+                            <i data-lucide="check"></i>
+                            <span>Clientes ilimitados</span>
+                        </div>
+                        <div class="feature">
+                            <i data-lucide="check"></i>
+                            <span>Contratos ilimitados</span>
+                        </div>
+                        <div class="feature">
+                            <i data-lucide="check"></i>
+                            <span>Relatórios completos</span>
+                        </div>
+                        <div class="feature">
+                            <i data-lucide="check"></i>
+                            <span>Notificações automáticas</span>
+                        </div>
+                        <div class="feature">
+                            <i data-lucide="check"></i>
+                            <span>Backup automático</span>
+                        </div>
+                        <div class="feature">
+                            <i data-lucide="check"></i>
+                            <span>Suporte prioritário</span>
+                        </div>
+                        <div class="feature">
+                            <i data-lucide="check"></i>
+                            <span>App mobile</span>
+                        </div>
+                        <div class="feature">
+                            <i data-lucide="check"></i>
+                            <span>Integração WhatsApp</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-hero" onclick="navigateToAuth('register')">
+                        Assinar Agora
+                    </button>
                 </div>
-                <div class="form-row">
-                  <div class="form-group">
-                    <label for="borrower-address">Endereço</label>
-                    <input type="text" id="borrower-address" placeholder="Rua, número, complemento">
-                  </div>
-                  <div class="form-group">
-                    <label for="borrower-city">Cidade</label>
-                    <input type="text" id="borrower-city" placeholder="Cidade">
-                  </div>
+
+                <!-- Plano Profissional -->
+                <div class="pricing-card">
+                    <div class="pricing-badge badge-secondary">PROFISSIONAL</div>
+                    <div class="pricing-price">
+                        <div class="price">R$ 97</div>
+                        <div class="period">por mês</div>
+                    </div>
+                    <div class="pricing-features">
+                        <div class="feature">
+                            <i data-lucide="check"></i>
+                            <span>Tudo do plano Básico</span>
+                        </div>
+                        <div class="feature">
+                            <i data-lucide="check"></i>
+                            <span>API de integração</span>
+                        </div>
+                        <div class="feature">
+                            <i data-lucide="check"></i>
+                            <span>Relatórios avançados com IA</span>
+                        </div>
+                        <div class="feature">
+                            <i data-lucide="check"></i>
+                            <span>Múltiplos usuários</span>
+                        </div>
+                        <div class="feature">
+                            <i data-lucide="check"></i>
+                            <span>White label personalizado</span>
+                        </div>
+                        <div class="feature">
+                            <i data-lucide="check"></i>
+                            <span>Suporte 24/7</span>
+                        </div>
+                        <div class="feature">
+                            <i data-lucide="check"></i>
+                            <span>Consultoria especializada</span>
+                        </div>
+                        <div class="feature">
+                            <i data-lucide="check"></i>
+                            <span>Análise preditiva</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline" onclick="navigateToAuth('register')">
+                        Assinar Agora
+                    </button>
                 </div>
-                <div class="form-group">
-                  <label for="borrower-notes">Observações</label>
-                  <textarea id="borrower-notes" rows="3" placeholder="Observações sobre o mutuário (opcional)"></textarea>
-                </div>
-                <div class="form-actions">
-                  <button type="button" class="btn-secondary cancel-modal">Cancelar</button>
-                  <button type="submit" class="btn-primary">Salvar Mutuário</button>
-                </div>
-              </form>
             </div>
-          </div>
+
+            <div class="pricing-cta">
+                <p>Não tem certeza? Teste grátis por 3 dias, sem compromisso!</p>
+                <button class="btn btn-accent" onclick="navigateToAuth('register')">
+                    Começar Teste Grátis Agora
+                    <i data-lucide="arrow-right"></i>
+                </button>
+            </div>
         </div>
+    </section>
 
-        <div class="modal" id="payment-modal">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h3>Registrar Pagamento</h3>
-              <button class="close-modal"><i class="fas fa-times"></i></button>
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <div class="section-header">
+                <div class="badge badge-primary">Dúvidas Frequentes</div>
+                <h2 class="section-title">Perguntas Frequentes</h2>
+                <p class="section-description">
+                    Tire suas dúvidas sobre o loanBuddy e descubra como podemos ajudar seu negócio
+                </p>
             </div>
-            <div class="modal-body">
-              <form id="payment-form">
-                <div class="form-group">
-                  <label for="payment-loan">Empréstimo</label>
-                  <select id="payment-loan" required>
-                    <option value="">Selecione um empréstimo</option>
-                    <option value="1">João Silva - R$ 5.000,00</option>
-                    <option value="2">Maria Santos - R$ 10.000,00</option>
-                    <option value="3">Pedro Oliveira - R$ 20.000,00</option>
-                  </select>
+
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(0)">
+                        <span>Como funciona o período de teste gratuito?</span>
+                        <i data-lucide="chevron-down" class="faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Você tem 3 dias completos para testar todas as funcionalidades do sistema, sem compromisso e sem necessidade de cartão de crédito. Acesso total a todas as features premium.
+                    </div>
                 </div>
-                <div class="form-row">
-                  <div class="form-group">
-                    <label for="payment-amount">Valor do Pagamento</label>
-                    <input type="number" id="payment-amount" placeholder="R$ 0,00" required min="1">
-                  </div>
-                  <div class="form-group">
-                    <label for="payment-date">Data do Pagamento</label>
-                    <input type="date" id="payment-date" required>
-                  </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(1)">
+                        <span>Posso cancelar minha assinatura a qualquer momento?</span>
+                        <i data-lucide="chevron-down" class="faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Sim! Você pode cancelar sua assinatura a qualquer momento através das configurações da sua conta. Não há multas, taxas de cancelamento ou fidelização.
+                    </div>
                 </div>
-                <div class="form-row">
-                  <div class="form-group">
-                    <label for="payment-method">Método de Pagamento</label>
-                    <select id="payment-method" required>
-                      <option value="cash">Dinheiro</option>
-                      <option value="transfer">Transferência</option>
-                      <option value="pix">PIX</option>
-                      <option value="card">Cartão</option>
-                      <option value="other">Outro</option>
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <label for="payment-type">Tipo de Pagamento</label>
-                    <select id="payment-type" required>
-                      <option value="scheduled">Parcela Regular</option>
-                      <option value="extra">Pagamento Extra</option>
-                      <option value="prepayment">Amortização</option>
-                    </select>
-                  </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(2)">
+                        <span>Meus dados estão seguros?</span>
+                        <i data-lucide="chevron-down" class="faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Absolutamente! Utilizamos criptografia de ponta a ponta, backup automático na nuvem e seguimos todas as normas LGPD. Seus dados estão protegidos com os mais altos padrões de segurança.
+                    </div>
                 </div>
-                <div class="form-group">
-                  <label for="payment-receipt">Comprovante</label>
-                  <div class="file-upload">
-                    <input type="file" id="payment-receipt">
-                    <label for="payment-receipt" class="file-upload-btn">
-                      <i class="fas fa-upload"></i> Anexar Comprovante
-                    </label>
-                  </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(3)">
+                        <span>O sistema funciona offline?</span>
+                        <i data-lucide="chevron-down" class="faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Sim! O loanBuddy funciona completamente offline em dispositivos móveis e sincroniza automaticamente quando a conexão é restaurada. Perfeito para trabalhar em qualquer lugar.
+                    </div>
                 </div>
-                <div class="form-group">
-                  <label for="payment-notes">Observações</label>
-                  <textarea id="payment-notes" rows="2" placeholder="Observações sobre o pagamento (opcional)"></textarea>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(4)">
+                        <span>Existe limite de clientes ou contratos?</span>
+                        <i data-lucide="chevron-down" class="faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        No plano Básico e Profissional não há limites. Você pode cadastrar quantos clientes e contratos precisar para fazer seu negócio crescer sem restrições.
+                    </div>
                 </div>
-                <div class="form-actions">
-                  <button type="button" class="btn-secondary cancel-modal">Cancelar</button>
-                  <button type="submit" class="btn-primary">Registrar Pagamento</button>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(5)">
+                        <span>Como funciona o suporte técnico?</span>
+                        <i data-lucide="chevron-down" class="faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Oferecemos suporte via email, chat e WhatsApp. No plano Profissional incluímos suporte 24/7 e consultoria especializada para otimizar seu uso do sistema.
+                    </div>
                 </div>
-              </form>
             </div>
-          </div>
         </div>
+    </section>
 
-      </main>
-    </div>
-
-    <!-- Mobile Navigation -->
-    <nav class="mobile-nav">
-      <a href="#" class="nav-item active" data-page="dashboard">
-        <i class="fas fa-chart-line"></i>
-        <span>Dashboard</span>
-      </a>
-      <a href="#" class="nav-item" data-page="loans">
-        <i class="fas fa-money-bill-wave"></i>
-        <span>Empréstimos</span>
-      </a>
-      <a href="#" class="nav-item" data-page="borrowers">
-        <i class="fas fa-users"></i>
-        <span>Mutuários</span>
-      </a>
-      <a href="#" class="nav-item" data-page="payments">
-        <i class="fas fa-receipt"></i>
-        <span>Pagamentos</span>
-      </a>
-      <a href="#" class="nav-item" data-page="more">
-        <i class="fas fa-ellipsis-h"></i>
-        <span>Mais</span>
-      </a>
-    </nav>
-
-    <!-- Offline Indicator -->
-    <div class="offline-indicator" style="display: none;">
-      <i class="fas fa-wifi-slash"></i> Você está offline. Algumas funções podem estar limitadas.
-    </div>
-  </div>
-
-  <!-- Toast Notifications -->
-  <div class="toast-container"></div>
-
-  <!-- More Menu (mobile only) -->
-  <div class="more-menu">
-    <div class="more-menu-backdrop"></div>
-    <div class="more-menu-content">
-      <div class="more-menu-header">
-        <h3>Menu</h3>
-        <button class="close-more-menu"><i class="fas fa-times"></i></button>
-      </div>
-      <div class="more-menu-items">
-        <a href="#" class="more-menu-item" data-page="reports">
-          <i class="fas fa-file-alt"></i>
-          <span>Relatórios</span>
-        </a>
-        <a href="#" class="more-menu-item" data-page="settings">
-          <i class="fas fa-cog"></i>
-          <span>Configurações</span>
-        </a>
-        <a href="#" class="more-menu-item">
-          <i class="fas fa-question-circle"></i>
-          <span>Ajuda</span>
-        </a>
-        <a href="#" class="more-menu-item">
-          <i class="fas fa-info-circle"></i>
-          <span>Sobre</span>
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Chart.js -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
-  
-  <!-- App Scripts -->
-  <script src="./js/app.js"></script>
-  <script src="./js/data.js"></script>
-  <script src="./js/ui.js"></script>
-  <script src="./js/charts.js"></script>
-  <script src="./js/forms.js"></script>
-  <script src="./js/reports.js"></script>
-  
-  <!-- PWA JavaScript -->
-  <script>
-    // Registro do Service Worker
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', async () => {
-        try {
-          const registration = await navigator.serviceWorker.register('/sw.js');
-          console.log('✅ Service Worker registrado com sucesso:', registration.scope);
-          
-          // Verificar atualizações
-          registration.addEventListener('updatefound', () => {
-            const newWorker = registration.installing;
-            newWorker.addEventListener('statechange', () => {
-              if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                // Nova versão disponível
-                showUpdateNotification();
-              }
-            });
-          });
-          
-        } catch (error) {
-          console.error('❌ Falha ao registrar Service Worker:', error);
-        }
-      });
-    }
-
-    // Detectar se o app está sendo executado como PWA
-    function isPWA() {
-      return window.matchMedia('(display-mode: standalone)').matches ||
-             window.navigator.standalone ||
-             document.referrer.includes('android-app://');
-    }
-
-    // Prompt de instalação PWA
-    let deferredPrompt;
-    window.addEventListener('beforeinstallprompt', (e) => {
-      console.log('💡 Prompt de instalação PWA disponível');
-      e.preventDefault();
-      deferredPrompt = e;
-      showInstallButton();
-    });
-
-    // Mostrar botão de instalação
-    function showInstallButton() {
-      const installButton = document.createElement('button');
-      installButton.className = 'btn-primary install-button';
-      installButton.innerHTML = '<i class="fas fa-download"></i> Instalar App';
-      installButton.style.cssText = `
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        z-index: 1000;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        animation: bounce 2s infinite;
-      `;
-      
-      installButton.addEventListener('click', async () => {
-        if (deferredPrompt) {
-          deferredPrompt.prompt();
-          const result = await deferredPrompt.userChoice;
-          
-          if (result.outcome === 'accepted') {
-            console.log('✅ Usuário aceitou instalar o PWA');
-            showToast('App instalado com sucesso!', 'success');
-          } else {
-            console.log('❌ Usuário rejeitou instalar o PWA');
-          }
-          
-          deferredPrompt = null;
-          installButton.remove();
-        }
-      });
-      
-      document.body.appendChild(installButton);
-      
-      // Remover após 10 segundos se não foi clicado
-      setTimeout(() => {
-        if (installButton.parentNode) {
-          installButton.remove();
-        }
-      }, 10000);
-    }
-
-    // Notificação de atualização disponível
-    function showUpdateNotification() {
-      const updateBanner = document.createElement('div');
-      updateBanner.className = 'update-banner';
-      updateBanner.innerHTML = `
-        <div style="
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          background: linear-gradient(135deg, #5b21b6, #2563eb);
-          color: white;
-          padding: 12px 20px;
-          text-align: center;
-          z-index: 10000;
-          box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        ">
-          <span>🚀 Nova versão disponível!</span>
-          <button onclick="reloadApp()" style="
-            background: rgba(255,255,255,0.2);
-            border: 1px solid rgba(255,255,255,0.3);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 4px;
-            margin-left: 10px;
-            cursor: pointer;
-          ">Atualizar</button>
-          <button onclick="this.parentElement.parentElement.remove()" style="
-            background: transparent;
-            border: none;
-            color: white;
-            padding: 4px 8px;
-            margin-left: 8px;
-            cursor: pointer;
-          ">✕</button>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="logo-icon">
+                        <i data-lucide="credit-card"></i>
+                    </div>
+                    <span class="logo-text">loanBuddy Pro</span>
+                </div>
+                <p class="footer-text">© 2024 loanBuddy Pro. Todos os direitos reservados.</p>
+            </div>
         </div>
-      `;
-      
-      document.body.appendChild(updateBanner);
-    }
+    </footer>
 
-    // Recarregar app com nova versão
-    function reloadApp() {
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.getRegistration().then(registration => {
-          if (registration && registration.waiting) {
-            registration.waiting.postMessage({ command: 'skipWaiting' });
-          }
-          window.location.reload();
-        });
-      }
-    }
-
-    // Detectar status offline/online
-    window.addEventListener('online', () => {
-      console.log('🌐 Conexão restaurada');
-      showToast('Conexão restaurada! Sincronizando dados...', 'success');
-      syncOfflineData();
-    });
-
-    window.addEventListener('offline', () => {
-      console.log('📱 Modo offline ativado');
-      showToast('Modo offline ativado. Dados serão sincronizados quando voltar online.', 'info');
-    });
-
-    // Sincronizar dados offline
-    async function syncOfflineData() {
-      if ('serviceWorker' in navigator && 'sync' in window.ServiceWorkerRegistration.prototype) {
-        try {
-          const registration = await navigator.serviceWorker.ready;
-          await registration.sync.register('loan-sync');
-          await registration.sync.register('payment-sync');
-          await registration.sync.register('borrower-sync');
-          console.log('✅ Sincronização em background registrada');
-        } catch (error) {
-          console.error('❌ Erro ao registrar sincronização:', error);
-        }
-      }
-    }
-
-    // Configurações de notificação push
-    async function enableNotifications() {
-      if ('Notification' in window && 'serviceWorker' in navigator) {
-        const permission = await Notification.requestPermission();
-        
-        if (permission === 'granted') {
-          console.log('✅ Permissão de notificação concedida');
-          showToast('Notificações ativadas!', 'success');
-          
-          // Registrar para notificações push
-          const registration = await navigator.serviceWorker.ready;
-          const subscription = await registration.pushManager.subscribe({
-            userVisibleOnly: true,
-            applicationServerKey: 'YOUR_VAPID_PUBLIC_KEY' // Substitua pela sua chave VAPID
-          });
-          
-          // Enviar subscription para o servidor
-          console.log('Subscription:', subscription);
-        } else {
-          console.log('❌ Permissão de notificação negada');
-        }
-      }
-    }
-
-    // Adicionar CSS para animações
-    const style = document.createElement('style');
-    style.textContent = `
-      @keyframes bounce {
-        0%, 20%, 53%, 80%, to {
-          animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-          transform: translate3d(0, 0, 0);
-        }
-        40%, 43% {
-          animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
-          transform: translate3d(0, -30px, 0);
-        }
-        70% {
-          animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
-          transform: translate3d(0, -15px, 0);
-        }
-        90% {
-          transform: translate3d(0, -4px, 0);
-        }
-      }
-      
-      .install-button {
-        animation: bounce 2s infinite;
-      }
-    `;
-    document.head.appendChild(style);
-
-    // Inicializar PWA quando DOM estiver pronto
-    document.addEventListener('DOMContentLoaded', () => {
-      console.log('🚀 LoanBuddy PWA inicializado!');
-      
-      // Verificar se está executando como PWA
-      if (isPWA()) {
-        console.log('📱 Executando como PWA instalado');
-        document.body.classList.add('pwa-mode');
-      }
-      
-      // Configurar botão de notificações (se existir)
-      const notificationBtn = document.querySelector('.enable-notifications');
-      if (notificationBtn) {
-        notificationBtn.addEventListener('click', enableNotifications);
-      }
-    });
-  </script>
+    <!-- Scripts -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
